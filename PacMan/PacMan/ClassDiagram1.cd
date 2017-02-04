@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PacMan.App" Collapsed="true">
+    <Position X="45.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="45.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PacMan.Common.GlobalConstants" Collapsed="true">
+    <Position X="45.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAAAAAAAwAAJDgAAgCAJAgAAUAAAAAAJCCAAgYAAQJA=</HashCode>
+      <FileName>Common\GlobalConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Common.ImageParser" Collapsed="true">
+    <Position X="47" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\ImageParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Common.RandomNumberGenerator" Collapsed="true">
+    <Position X="50.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\RandomNumberGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Common.Engine" Collapsed="true">
+    <Position X="47" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GgwAAACEAxIAACpgDwSIQRCgAgAAEBKIFEIAAEoAAAA=</HashCode>
+      <FileName>Logic\Engine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Common.KeyDownEventArgs" Collapsed="true">
+    <Position X="48.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\KeyDownEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.EnemeyBuilders.BlinkyBuilder" Collapsed="true">
+    <Position X="5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\EnemeyBuilders\BlinkyBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.EnemeyBuilders.ClydeBuilder" Collapsed="true">
+    <Position X="7.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\EnemeyBuilders\ClydeBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.EnemeyBuilders.EnemeyBuilder" Collapsed="true">
+    <Position X="3.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQCAAAAAAAAABAACAACAAwAABAgAAAAA=</HashCode>
+      <FileName>Factories\Builders\EnemeyBuilders\EnemeyBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.EnemeyBuilders.InkyBuilder" Collapsed="true">
+    <Position X="0.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\EnemeyBuilders\InkyBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.EnemeyBuilders.PinkyBuilder" Collapsed="true">
+    <Position X="2.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\EnemeyBuilders\PinkyBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.FruitBuilders.AppleBuilder" Collapsed="true">
+    <Position X="3" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\FruitBuilders\AppleBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.FruitBuilders.CherryBuilder" Collapsed="true">
+    <Position X="5.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\FruitBuilders\CherryBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.FruitBuilders.FruitBuilder" Collapsed="true">
+    <Position X="6.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAQAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\FruitBuilders\FruitBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.FruitBuilders.GrapesBuilder" Collapsed="true">
+    <Position X="7.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\FruitBuilders\GrapesBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.FruitBuilders.LemonBuilder" Collapsed="true">
+    <Position X="9.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\FruitBuilders\LemonBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.FruitBuilders.OrangeBuilder" Collapsed="true">
+    <Position X="12" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\FruitBuilders\OrangeBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.FruitBuilders.StrawberryBuilder" Collapsed="true">
+    <Position X="0.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Builders\FruitBuilders\StrawberryIBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.Builders.PacmanBuilder" Collapsed="true">
+    <Position X="47" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAABIAAAAAAAAAAAAAACEAQAAAAAAAEEA=</HashCode>
+      <FileName>Factories\Builders\PacmanBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.FruitFactory" Collapsed="true">
+    <Position X="48.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAJCACQAIAAIAAAAAAAAAAAAAACAAACCAAAAg=</HashCode>
+      <FileName>Factories\FruitFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Factories.PlayerFactory" Collapsed="true">
+    <Position X="48.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAGQAAAAAAAAAAAAAQAAEAAQAAAIAAAAIACAA=</HashCode>
+      <FileName>Factories\PlayerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Common.Award" Collapsed="true">
+    <Position X="13.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAgAAAAAAAAgAAAAAAAgAAACAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Common\Award.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Logic.HighScore" Collapsed="true">
+    <Position X="15.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABAAAAAAAA=</HashCode>
+      <FileName>Logic\HighScore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Logic.Score" Collapsed="true">
+    <Position X="15.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAgCAAAAAA=</HashCode>
+      <FileName>Logic\Score.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Renderers.GameRenderer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="50.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAgAAAgAAAAACAAAAAAAAAEAAAABAAAA=</HashCode>
+      <FileName>Renderers\GameRenderer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Maps.Classic" Collapsed="true">
+    <Position X="4.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAoGAAAAIQAAIAAAgAAJEQFCAAQgAAIAAAQAIAMpA=</HashCode>
+      <FileName>Maps\Classic.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Models.Abstract.Dot" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Abstract\Dot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Models.Abstract.Enemey" Collapsed="true">
+    <Position X="36" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAEAAAABALAACEAAQAAAQAACAAAAAAAgAAAA=</HashCode>
+      <FileName>Models\Abstract\Enemey.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Models.Abstract.Fruit" Collapsed="true">
+    <Position X="23.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAQAQEAAQAACAAAIAACAAAAA=</HashCode>
+      <FileName>Models\Abstract\Fruit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Models.Abstract.GameObject" Collapsed="true">
+    <Position X="22.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAggAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Abstract\GameObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Models.Abstract.Moveable" Collapsed="true">
+    <Position X="30.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEABAAAAIAgAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Abstract\Moveable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Models.Common.Gate" Collapsed="true">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Common\Gate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Models.Common.PacmanLife" Collapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Common\PacmanLife.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Models.Dots.HeavyDot" Collapsed="true">
+    <Position X="6.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Dots\HeavyDot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Dots.RegularDot" Collapsed="true">
+    <Position X="9" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Dots\RegularDot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Fruits.Apple" Collapsed="true">
+    <Position X="29.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ftuits\Apple.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Fruits.Cherry" Collapsed="true">
+    <Position X="18" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ftuits\Cherry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Fruits.Grapes" Collapsed="true">
+    <Position X="20.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ftuits\Grapes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Fruits.Lemon" Collapsed="true">
+    <Position X="22.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ftuits\Lemon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Fruits.Orange" Collapsed="true">
+    <Position X="24.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ftuits\Orange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Fruits.Strawberry" Collapsed="true">
+    <Position X="27" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ftuits\Strawberry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Players.Blinky" Collapsed="true">
+    <Position X="31.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Players\Blinky.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Players.Clyde" Collapsed="true">
+    <Position X="33.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Players\Clyde.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Players.Inky" Collapsed="true">
+    <Position X="38.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Players\Inky.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Models.Players.Pacman" Collapsed="true">
+    <Position X="40.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAKAAAAAAAAAAAAAAAAAQAAAAAACAAAAAAAgAAAA=</HashCode>
+      <FileName>Models\Players\Pacman.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.Models.Players.Pinky" Collapsed="true">
+    <Position X="42.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Players\Pinky.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Properties.Resources" Collapsed="true">
+    <Position X="45.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.Properties.Settings" Collapsed="true">
+    <Position X="47" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.LoopStream" Collapsed="true">
+    <Position X="50.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAQAAAAAAAAgBAAAAABgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\LoopStream.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundProvider" Collapsed="true">
+    <Position X="48.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQA8AQDAAAABAAAAQABAAUQAAIAARAAAIAAACCABwAA=</HashCode>
+      <FileName>SoundProvider\SoundProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.SoundPlayer" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIICACAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\Abstract\SoundPlayer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.BeginningPlayer" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\BeginningPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.EatFruitPlayer" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\EatFruitPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.EatGhostPlayer" Collapsed="true">
+    <Position X="19.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\EatGhostPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.ExtraLifePlayer" Collapsed="true">
+    <Position X="21.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\ExtraLifePlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.FruitStepPlayer" Collapsed="true">
+    <Position X="23.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\FruitStepPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.IntermissionPlayer" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\IntermissionPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.PacmanChompPlayer" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\PacmanChompPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.PacmanDeathPlayer" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\PacmanDeathPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.PacmanMovePlayer" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\PacmanMovePlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.RetraitPlayer" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\RetraitPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacMan.SoundProvider.SoundPlayers.ScaredPlayer" Collapsed="true">
+    <Position X="17" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\ScaredPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="PacMan.Models.Common.Movement" Collapsed="true">
+    <Position X="45.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAIAIAACAAAAAAAAiA=</HashCode>
+      <FileName>Models\Common\Movement.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="PacMan.Models.Common.Position" Collapsed="true">
+    <Position X="47" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAIAIAACAAAAAAAAiA=</HashCode>
+      <FileName>Models\Common\Position.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="PacMan.Models.Common.Size" Collapsed="true">
+    <Position X="48.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Common\Size.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="PacMan.Renderers.IGameRenderer" Collapsed="true">
+    <Position X="47" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Renderers\IGameRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PacMan.Maps.IMap" Collapsed="true">
+    <Position X="15" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAoCAAAAAAAAAAAAAAAIAQBAAAAAAAAAAAQAAAIIA=</HashCode>
+      <FileName>Maps\IMap.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PacMan.Models.Interfaces.IAwardable" Collapsed="true">
+    <Position X="45.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IAwardable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PacMan.Models.Interfaces.IFigurable" Collapsed="true">
+    <Position X="12.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IFigurable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PacMan.Models.Interfaces.IGameObject" Collapsed="true">
+    <Position X="12.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IGameObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PacMan.Models.Interfaces.IImagable" Collapsed="true">
+    <Position X="15" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IImagable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PacMan.Models.Interfaces.IKillable" Collapsed="true">
+    <Position X="48.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IKillable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PacMan.Models.Interfaces.IMoveable" Collapsed="true">
+    <Position X="10.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IMoveable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PacMan.SoundProvider.SoundPlayers.ISoundPlayer" Collapsed="true">
+    <Position X="50.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>SoundProvider\SoundPlayers\Abstract\ISoundPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="PacMan.Renderers.GameCommand" Collapsed="true">
+    <Position X="45.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEgAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAAAAAAA=</HashCode>
+      <FileName>Logic\GameCommand.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="PacMan.Models.Common.MovementType" Collapsed="true">
+    <Position X="47" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAICAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAI=</HashCode>
+      <FileName>Models\Common\MovementType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

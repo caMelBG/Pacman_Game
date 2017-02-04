@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{996A796F-2AD3-492D-A1FF-FF2CD85C7673}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PacMan</RootNamespace>
+    <AssemblyName>PacMan</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>PacMan.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.7.3\lib\net35\NAudio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Common\GlobalConstants.cs" />
+    <Compile Include="Factories\Builders\EnemeyBuilders\BlinkyBuilder.cs" />
+    <Compile Include="Factories\Builders\EnemeyBuilders\ClydeBuilder.cs" />
+    <Compile Include="Factories\Builders\EnemeyBuilders\EnemeyBuilder.cs" />
+    <Compile Include="Factories\Builders\EnemeyBuilders\InkyBuilder.cs" />
+    <Compile Include="Factories\Builders\FruitBuilders\AppleBuilder.cs" />
+    <Compile Include="Factories\Builders\FruitBuilders\CherryBuilder.cs" />
+    <Compile Include="Factories\Builders\FruitBuilders\FruitBuilder.cs" />
+    <Compile Include="Factories\Builders\FruitBuilders\GrapesBuilder.cs" />
+    <Compile Include="Factories\Builders\FruitBuilders\LemonBuilder.cs" />
+    <Compile Include="Factories\Builders\FruitBuilders\OrangeBuilder.cs" />
+    <Compile Include="Factories\Builders\FruitBuilders\StrawberryIBuilder.cs" />
+    <Compile Include="Factories\Builders\EnemeyBuilders\PinkyBuilder.cs" />
+    <Compile Include="Factories\Builders\PacmanBuilder.cs" />
+    <Compile Include="Factories\FruitFactory.cs" />
+    <Compile Include="Factories\PlayerFactory.cs" />
+    <Compile Include="Logic\CommonLogic.cs" />
+    <Compile Include="Logic\Drawer.cs" />
+    <Compile Include="Logic\Updater.cs" />
+    <Compile Include="Models\Common\Award.cs" />
+    <Compile Include="Models\Common\HighScore.cs" />
+    <Compile Include="Logic\KeyDownEventArgs.cs" />
+    <Compile Include="Common\RandomNumberGenerator.cs" />
+    <Compile Include="Logic\MainLogic.cs" />
+    <Compile Include="Models\Common\Score.cs" />
+    <Compile Include="Maps\Classic.cs" />
+    <Compile Include="Maps\IMap.cs" />
+    <Compile Include="Models\Abstract\Enemey.cs" />
+    <Compile Include="Models\Abstract\Moveable.cs" />
+    <Compile Include="Models\Common\PacmanLife.cs" />
+    <Compile Include="Models\Ftuits\Apple.cs" />
+    <Compile Include="Models\Abstract\Fruit.cs" />
+    <Compile Include="Models\Abstract\Dot.cs" />
+    <Compile Include="Models\Dots\HeavyDot.cs" />
+    <Compile Include="Models\Dots\RegularDot.cs" />
+    <Compile Include="Models\Ftuits\Cherry.cs" />
+    <Compile Include="Models\Ftuits\Grapes.cs" />
+    <Compile Include="Models\Ftuits\Lemon.cs" />
+    <Compile Include="Models\Ftuits\Orange.cs" />
+    <Compile Include="Models\Ftuits\Strawberry.cs" />
+    <Compile Include="Models\Common\Gate.cs" />
+    <Compile Include="Models\Interfaces\IAwardable.cs" />
+    <Compile Include="Models\Interfaces\IFigurable.cs" />
+    <Compile Include="Models\Interfaces\IFormatable.cs" />
+    <Compile Include="Models\Interfaces\IImagable.cs" />
+    <Compile Include="Models\Interfaces\IKillable.cs" />
+    <Compile Include="Models\Interfaces\IMoveable.cs" />
+    <Compile Include="Models\Common\Movement.cs" />
+    <Compile Include="Models\Abstract\Player.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\BeginningPlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\EatFruitPlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\EatGhostPlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\ExtraLifePlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\FruitStepPlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\IntermissionPlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\Abstract\ISoundPlayer.cs" />
+    <Compile Include="SoundProvider\LoopStream.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\PacmanChompPlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\PacmanDeathPlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\PacmanMovePlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\RetraitPlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\ScaredPlayer.cs" />
+    <Compile Include="SoundProvider\SoundPlayers\Abstract\SoundPlayer.cs" />
+    <Compile Include="SoundProvider\SoundProvider.cs" />
+    <Compile Include="Renderers\GameRenderer.cs" />
+    <Compile Include="Renderers\IGameRenderer.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\ImageParser.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Abstract\GameObject.cs" />
+    <Compile Include="Models\Players\Pinky.cs" />
+    <Compile Include="Models\Players\Inky.cs" />
+    <Compile Include="Models\Players\Blinky.cs" />
+    <Compile Include="Models\Players\Clyde.cs" />
+    <Compile Include="Models\Interfaces\IGameObject.cs" />
+    <Compile Include="Models\Common\MovementType.cs" />
+    <Compile Include="Models\Players\Pacman.cs" />
+    <Compile Include="Models\Common\Position.cs" />
+    <Compile Include="Models\Common\Size.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Enemey\Blue\down.png" />
+    <Resource Include="Images\Enemey\Blue\left.png" />
+    <Resource Include="Images\Enemey\Blue\rigth.png" />
+    <Resource Include="Images\Enemey\Blue\up.png" />
+    <Resource Include="Images\Enemey\Invisible\down.png" />
+    <Resource Include="Images\Enemey\Invisible\left.png" />
+    <Resource Include="Images\Enemey\Invisible\rigth.png" />
+    <Resource Include="Images\Enemey\Invisible\up.png" />
+    <Resource Include="Images\Enemey\Killable\blinked.png" />
+    <Resource Include="Images\Enemey\Killable\normal.png" />
+    <Resource Include="Images\Enemey\Pink\down.png" />
+    <Resource Include="Images\Enemey\Pink\left.png" />
+    <Resource Include="Images\Enemey\Pink\rigth.png" />
+    <Resource Include="Images\Enemey\Pink\up.png" />
+    <Resource Include="Images\Enemey\Red\down.png" />
+    <Resource Include="Images\Enemey\Red\left.png" />
+    <Resource Include="Images\Enemey\Red\rigth.png" />
+    <Resource Include="Images\Enemey\Red\up.png" />
+    <Resource Include="Images\Enemey\Yellow\down.png" />
+    <Resource Include="Images\Enemey\Yellow\left.png" />
+    <Resource Include="Images\Enemey\Yellow\rigth.png" />
+    <Resource Include="Images\Enemey\Yellow\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pacman\Dying\0.png" />
+    <Resource Include="Images\Pacman\Dying\1.png" />
+    <Resource Include="Images\Pacman\Dying\2.png" />
+    <Resource Include="Images\Pacman\Dying\3.png" />
+    <Resource Include="Images\Pacman\Dying\4.png" />
+    <Resource Include="Images\Pacman\Dying\5.png" />
+    <Resource Include="Images\Pacman\Dying\6.png" />
+    <Resource Include="Images\Pacman\Dying\7.png" />
+    <Resource Include="Images\Pacman\Dying\8.png" />
+    <Resource Include="Images\Pacman\Dying\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Maps\classic.gif" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Pacman\basic.png" />
+    <Resource Include="Images\Pacman\downFirst.png" />
+    <Resource Include="Images\Pacman\downSecond.png" />
+    <Resource Include="Images\Pacman\leftFirst.png" />
+    <Resource Include="Images\Pacman\leftSecond.png" />
+    <Resource Include="Images\Pacman\rigthFirst.png" />
+    <Resource Include="Images\Pacman\rigthSecond.png" />
+    <Resource Include="Images\Pacman\upFirst.png" />
+    <Resource Include="Images\Pacman\upSecond.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Logic\bestScore.txt" />
+    <Content Include="Sounds\pacmanChomp.wav" />
+    <Content Include="Sounds\retrait.wav" />
+    <Content Include="Sounds\scared.wav" />
+    <Content Include="Sounds\pacmanMove.wav" />
+    <Resource Include="Images\Bonus\apple.png" />
+    <Resource Include="Images\Bonus\cherry.png" />
+    <Resource Include="Images\Bonus\grapes.png" />
+    <Resource Include="Images\Bonus\lemon.png" />
+    <Resource Include="Images\Bonus\orange.png" />
+    <Resource Include="Images\Bonus\strawberry.png" />
+    <Content Include="Sounds\fruitStep.wav" />
+    <Content Include="Sounds\beginning.wav" />
+    <Content Include="Sounds\pacmanDeath.wav" />
+    <Content Include="Sounds\eatFruit.wav" />
+    <Content Include="Sounds\eatGhost.wav" />
+    <Content Include="Sounds\extrapac.wav" />
+    <Content Include="Sounds\intermission.wav" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
