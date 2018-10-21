@@ -1,4 +1,6 @@
-﻿namespace PacMan.SoundProvider.SoundPlayers
+﻿using System;
+
+namespace PacMan.SoundProvider.SoundPlayers
 {
     using System.IO;
     using NAudio.Wave;
@@ -30,7 +32,8 @@
         {
             if (this.WavePlayer.PlaybackState != PlaybackState.Playing)
             {
-                this.Init();
+                //this.Init();
+                stream.Position = 0;
                 this.WavePlayer.Play();
             }
         }

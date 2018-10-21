@@ -14,6 +14,8 @@
         Width="525"
         Height="700" >
     <Canvas Name="GameCanvas">
-        
+        <!--<Canvas.CacheMode>
+            <BitmapCache EnableClearType="False" RenderAtScale="1" SnapsToDevicePixels="True"/>
+        </Canvas.CacheMode>-->
     </Canvas>
 </Window>

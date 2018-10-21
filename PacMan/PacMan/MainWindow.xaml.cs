@@ -1,4 +1,7 @@
-﻿namespace PacMan
+﻿using System;
+using System.Windows.Threading;
+
+namespace PacMan
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -21,27 +24,14 @@
             var engine = new Engine(map, renderer);
             engine.InitGame();
             engine.DrawGameObjects();
-            ///this.Dots();
+            DispatcherTimer timer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(60)};
+            timer.Tick += Timer_Tick;
+            timer.Start();
         }
 
-        private void Dots()
+        private void Timer_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < 650 - 64; i += 18)
-            {
-                for (int j = 0; j < 650; j += 18)
-                {
-                    var brush = new SolidColorBrush();
-                    brush.Color = Colors.White;
-                    var dot = new Ellipse();
-                    dot.Width = 2;
-                    dot.Height = 2;
-                    dot.Fill = brush;
-
-                    Canvas.SetLeft(dot, 9 + i);
-                    Canvas.SetTop(dot, 59 + j);
-                    this.GameCanvas.Children.Add(dot);
-                }
-            }
+            Environment.Exit(0);
         }
     }
 }

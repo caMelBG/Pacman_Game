@@ -97,6 +97,7 @@
 
             BegginingTimeInterval--;
             this.DrawGameObjects();
+
         }
 
         private void PlayEnemeySounds()

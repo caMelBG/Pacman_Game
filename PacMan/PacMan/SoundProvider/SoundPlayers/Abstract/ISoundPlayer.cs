@@ -1,9 +1,12 @@
-﻿namespace PacMan.SoundProvider.SoundPlayers
+﻿using System;
+
+namespace PacMan.SoundProvider.SoundPlayers
 {
     public interface ISoundPlayer
     {
         void Play();
 
         void Pause();
+
     }
 }
