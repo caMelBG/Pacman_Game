@@ -11,6 +11,7 @@
     using Renderers;
     using SoundProvider;
     using Models.Players;
+    using PacMan.Factories;
 
     public partial class Engine
     {
@@ -35,6 +36,7 @@
         private Gate gate;
         private Fruit fruit;
         private List<Fruit> eatenFruits;
+        private DotFactory dotFactory;
         private HashSet<Position> regularDotPositions;
         private HashSet<Position> heavyDotPositions;
         private HashSet<Enemy> enemeis;
@@ -53,6 +55,7 @@
             this.isGameStarted = false;
             this.timer = new DispatcherTimer();
             this.soundProvider = new SoundProvider();
+            this.dotFactory = new DotFactory();
             this.gameRenderer.UIActionHappened += this.HandleUIActionHappened;
             this.StartGame();
         }

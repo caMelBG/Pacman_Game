@@ -76,6 +76,7 @@
     <Compile Include="Factories\Builders\FruitBuilders\StrawberryIBuilder.cs" />
     <Compile Include="Factories\Builders\EnemyBuilders\PinkyBuilder.cs" />
     <Compile Include="Factories\Builders\PacmanBuilder.cs" />
+    <Compile Include="Factories\DotFactory.cs" />
     <Compile Include="Factories\FruitFactory.cs" />
     <Compile Include="Factories\EnemyFactory.cs" />
     <Compile Include="Logic\CommonLogic.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Models\Abstract\Enemey.cs" />
     <Compile Include="Models\Abstract\Moveable.cs" />
     <Compile Include="Models\Common\PacmanLife.cs" />
+    <Compile Include="Models\Enums\DotTypes.cs" />
     <Compile Include="Models\Enums\FruitTypes.cs" />
     <Compile Include="Models\Enums\EnemyTypes.cs" />
     <Compile Include="Models\Ftuits\Apple.cs" />

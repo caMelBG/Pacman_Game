@@ -3,6 +3,7 @@
     using Maps;
     using Models.Common;
     using PacMan.Models.Dots;
+    using PacMan.Models.Enums;
 
     public partial class Engine 
     {
@@ -12,18 +13,19 @@
             this.gameRenderer.Draw(this.currentScore.Format(), currentScore.Position, currentScore.Size);
             this.gameRenderer.Draw(this.bestScore.Format(), this.bestScore.Position, this.bestScore.Size);
             this.gameRenderer.Draw(this.gameMap.GetImage(), this.gameMap.Position, this.gameMap.Size);
-            this.gameRenderer.Draw(this.gate.Figure, this.gate.Position, this.gate.Size);
+            this.gameRenderer.Draw(this.gate.Figure, this.gate.Position, this.gate.Size);   
+            
             ///DRAW REGULAR DOTS
             foreach (var position in this.regularDotPositions)
             {
-                var regularDot = new RegularDot(position);
+                var regularDot = dotFactory.CreateDot(DotTypes.Regular, position);
                 this.gameRenderer.Draw(regularDot.Figure, regularDot.Position, regularDot.Size);
             }
 
             ///DRAW HEAVY DOTS
             foreach (var position in this.heavyDotPositions)
             {
-                var heavyDot = new HeavyDot(position);
+                var heavyDot = dotFactory.CreateDot(DotTypes.Heavy, position);
                 this.gameRenderer.Draw(heavyDot.Figure, heavyDot.Position, heavyDot.Size);
             }
 
