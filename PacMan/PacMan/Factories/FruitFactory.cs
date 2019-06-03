@@ -3,54 +3,40 @@
     using Models.Abstract;
     using Models.Common;
     using PacMan.Factories.Builders.FruitBuilders;
+    using PacMan.Models.Enums;
+    using System;
 
     public class FruitFactory
     {
-        private AppleBuilder appleBuilder;
-        private CherryBuilder cherryBuilder;
-        private GrapesBuilder grapesBuilder;
-        private LemonBuilder lemonBuilder;
-        private OrangeBuilder orangeBuilder;
-        private StrawberryBuilder strawberryBuilder;
-
-        public FruitFactory()
+        private FruitBuilder _fruitBuilder;
+        
+        public Fruit CreateFruit(FruitTypes type, Position position)
         {
-        }
+            switch (type)
+            {
+                case FruitTypes.Apple:
+                    _fruitBuilder = new AppleBuilder(position);
+                    break;
+                case FruitTypes.Cherry:
+                    _fruitBuilder = new CherryBuilder(position);
+                    break;
+                case FruitTypes.Grapes:
+                    _fruitBuilder = new GrapesBuilder(position);
+                    break;
+                case FruitTypes.Lemon:
+                    _fruitBuilder = new LemonBuilder(position);
+                    break;
+                case FruitTypes.Orange:
+                    _fruitBuilder = new OrangeBuilder(position);
+                    break;
+                case FruitTypes.Strawberry:
+                    _fruitBuilder = new StrawberryBuilder(position);
+                    break;
+                default:
+                    throw new ArgumentException($"Not supported fruit type {type}");
+            }
 
-        public Fruit CreatApple(Position position)
-        {
-            this.appleBuilder = new AppleBuilder(position);
-            return this.appleBuilder.Instance;
-        }
-
-        public Fruit CreatCherry(Position position)
-        {
-            this.cherryBuilder = new CherryBuilder(position);
-            return this.cherryBuilder.Instance;
-        }
-
-        public Fruit CreatGrapes(Position position)
-        {
-            this.grapesBuilder = new GrapesBuilder(position);
-            return this.grapesBuilder.Instance;
-        }
-
-        public Fruit CreatOrange(Position position)
-        {
-            this.orangeBuilder = new OrangeBuilder(position);
-            return this.orangeBuilder.Instance;
-        }
-
-        public Fruit CreatLemon(Position position)
-        {
-            this.lemonBuilder = new LemonBuilder(position);
-            return this.lemonBuilder.Instance;
-        }
-
-        public Fruit CreatStrawberry(Position position)
-        {
-            this.strawberryBuilder = new StrawberryBuilder(position);
-            return this.strawberryBuilder.Instance;
+            return _fruitBuilder.Instance;
         }
     }
 }
