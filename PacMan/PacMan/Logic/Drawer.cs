@@ -27,10 +27,10 @@
                 this.gameRenderer.Draw(heavyDot.Figure, heavyDot.Position, heavyDot.Size);
             }
 
-            ///DRAW ENEMEYS
-            foreach (var enemey in this.enemeys)
+            ///DRAW ENEMYS
+            foreach (var enemy in this.enemeis)
             {
-                this.gameRenderer.Draw(enemey.GetImage(), enemey.Position, enemey.Size);
+                this.gameRenderer.Draw(enemy.GetImage(), enemy.Position, enemy.Size);
             }
 
             ///DRAW FRUIT

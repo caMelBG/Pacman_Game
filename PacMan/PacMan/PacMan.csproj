@@ -63,10 +63,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\GlobalConstants.cs" />
-    <Compile Include="Factories\Builders\EnemeyBuilders\BlinkyBuilder.cs" />
-    <Compile Include="Factories\Builders\EnemeyBuilders\ClydeBuilder.cs" />
-    <Compile Include="Factories\Builders\EnemeyBuilders\EnemeyBuilder.cs" />
-    <Compile Include="Factories\Builders\EnemeyBuilders\InkyBuilder.cs" />
+    <Compile Include="Factories\Builders\EnemyBuilders\BlinkyBuilder.cs" />
+    <Compile Include="Factories\Builders\EnemyBuilders\ClydeBuilder.cs" />
+    <Compile Include="Factories\Builders\EnemyBuilders\EnemeyBuilder.cs" />
+    <Compile Include="Factories\Builders\EnemyBuilders\InkyBuilder.cs" />
     <Compile Include="Factories\Builders\FruitBuilders\AppleBuilder.cs" />
     <Compile Include="Factories\Builders\FruitBuilders\CherryBuilder.cs" />
     <Compile Include="Factories\Builders\FruitBuilders\FruitBuilder.cs" />
@@ -74,10 +74,10 @@
     <Compile Include="Factories\Builders\FruitBuilders\LemonBuilder.cs" />
     <Compile Include="Factories\Builders\FruitBuilders\OrangeBuilder.cs" />
     <Compile Include="Factories\Builders\FruitBuilders\StrawberryIBuilder.cs" />
-    <Compile Include="Factories\Builders\EnemeyBuilders\PinkyBuilder.cs" />
+    <Compile Include="Factories\Builders\EnemyBuilders\PinkyBuilder.cs" />
     <Compile Include="Factories\Builders\PacmanBuilder.cs" />
     <Compile Include="Factories\FruitFactory.cs" />
-    <Compile Include="Factories\PlayerFactory.cs" />
+    <Compile Include="Factories\EnemyFactory.cs" />
     <Compile Include="Logic\CommonLogic.cs" />
     <Compile Include="Logic\Drawer.cs" />
     <Compile Include="Logic\Updater.cs" />
@@ -92,6 +92,8 @@
     <Compile Include="Models\Abstract\Enemey.cs" />
     <Compile Include="Models\Abstract\Moveable.cs" />
     <Compile Include="Models\Common\PacmanLife.cs" />
+    <Compile Include="Models\Enums\FruitTypes.cs" />
+    <Compile Include="Models\Enums\EnemyTypes.cs" />
     <Compile Include="Models\Ftuits\Apple.cs" />
     <Compile Include="Models\Abstract\Fruit.cs" />
     <Compile Include="Models\Abstract\Dot.cs" />

@@ -12,9 +12,9 @@
             {
                 this.UpdateCoins();
                 this.UpdatePacman();
-                this.UpdateEnemeys();
+                this.UpdateEnemeis();
                 this.UpdateFruit();
-                this.PlayEnemeySounds();
+                this.PlayEnemeiSounds();
             }
             else
             {
@@ -56,49 +56,49 @@
 
             if (this.heavyDotPositions.Contains(this.pacman.Position))
             {
-                foreach (var enemey in this.enemeys)
+                foreach (var enemy in this.enemeis)
                 {
                     this.currentScore.Value += HeavyDotAward;
-                    enemey.CanKill = true;
+                    enemy.CanKill = true;
                 }
 
                 this.heavyDotPositions.Remove(this.pacman.Position);
             }
         }
 
-        private void UpdateEnemeys()
+        private void UpdateEnemeis()
         {
-            foreach (var enemey in this.enemeys)
+            foreach (var enemy in this.enemeis)
             {
-                if (enemey.CanKill)
+                if (enemy.CanKill)
                 {
-                    if (enemey.MoveSpeed != EnemeySlowSpeed)
+                    if (enemy.MoveSpeed != EnemySlowSpeed)
                     {
-                        enemey.MoveSpeed = EnemeySlowSpeed;
-                        if (enemey.Position.Left % EnemeySlowSpeed > 0)
+                        enemy.MoveSpeed = EnemySlowSpeed;
+                        if (enemy.Position.Left % EnemySlowSpeed > 0)
                         {
-                            enemey.Position = new Position(enemey.Position.Left - 1, enemey.Position.Top);
+                            enemy.Position = new Position(enemy.Position.Left - 1, enemy.Position.Top);
                         }
 
-                        if (enemey.Position.Top % EnemeySlowSpeed > 0)
+                        if (enemy.Position.Top % EnemySlowSpeed > 0)
                         {
-                            enemey.Position = new Position(enemey.Position.Left, enemey.Position.Top - 1);
+                            enemy.Position = new Position(enemy.Position.Left, enemy.Position.Top - 1);
                         }
                     }
 
-                    enemey.MovementType = this.GenerateMovementFarFromPacman(enemey);
-                    if (this.IsPacmanHitGameObject(enemey))
+                    enemy.MovementType = this.GenerateMovementFarFromPacman(enemy);
+                    if (this.IsPacmanHitGameObject(enemy))
                     {
-                        enemey.IsAlive = false;
+                        enemy.IsAlive = false;
                         this.soundProvider.EatGhostPlay();
-                        this.currentScore.Value += enemey.Award.Value;
-                        this.earnedAward = enemey.Award;
-                        this.earnedAward.Position = enemey.Position;
-                        foreach (var aliveEnemey in this.enemeys)
+                        this.currentScore.Value += enemy.Award.Value;
+                        this.earnedAward = enemy.Award;
+                        this.earnedAward.Position = enemy.Position;
+                        foreach (var aliveEnemy in this.enemeis)
                         {
-                            if (aliveEnemey.IsAlive)
+                            if (aliveEnemy.IsAlive)
                             {
-                                aliveEnemey.Award.Value += EnemeyAward;
+                                aliveEnemy.Award.Value += EnemyAward;
                             }
                         }
 
@@ -106,55 +106,55 @@
                         Task.Delay(2000);
                     }
                 }
-                else if (!enemey.IsAlive)
+                else if (!enemy.IsAlive)
                 {
-                    if (enemey.MoveSpeed != EnemeyFastSpeed)
+                    if (enemy.MoveSpeed != EnemyFastSpeed)
                     {
-                        enemey.MoveSpeed = EnemeyFastSpeed;
-                        int left = ((enemey.Position.Left - Classic.DistanceFromTheLeft) % Classic.DistanceBetweenGameObjects) % EnemeyFastSpeed;
-                        int top = ((enemey.Position.Top - Classic.DistanceFromTheTop) % Classic.DistanceBetweenGameObjects) % EnemeyFastSpeed;
-                        enemey.Position = new Position(enemey.Position.Left - left, enemey.Position.Top - top);
+                        enemy.MoveSpeed = EnemyFastSpeed;
+                        int left = ((enemy.Position.Left - Classic.DistanceFromTheLeft) % Classic.DistanceBetweenGameObjects) % EnemyFastSpeed;
+                        int top = ((enemy.Position.Top - Classic.DistanceFromTheTop) % Classic.DistanceBetweenGameObjects) % EnemyFastSpeed;
+                        enemy.Position = new Position(enemy.Position.Left - left, enemy.Position.Top - top);
                     }
 
-                    if (this.IsEnemeyEntryToTheCave(enemey))
+                    if (this.IsEnemyEntryToTheCave(enemy))
                     {
-                        enemey.IsAlive = true;
-                        enemey.IsInCave = true;
+                        enemy.IsAlive = true;
+                        enemy.IsInCave = true;
                     }
 
-                    enemey.MovementType = this.gameMap.FindWayToCave(enemey);
+                    enemy.MovementType = this.gameMap.FindWayToCave(enemy);
                 }
-                else if (enemey.IsInCave)
+                else if (enemy.IsInCave)
                 {
-                    if (this.IsEnemeyEntryToTheCave(enemey))
+                    if (this.IsEnemyEntryToTheCave(enemy))
                     {
-                        enemey.IsInCave = false;
+                        enemy.IsInCave = false;
                     }
 
-                    enemey.MovementType = this.gameMap.FindWayOutOfCave(enemey);
+                    enemy.MovementType = this.gameMap.FindWayOutOfCave(enemy);
                 }
                 else
                 {
-                    if (this.IsPacmanHitGameObject(enemey))
+                    if (this.IsPacmanHitGameObject(enemy))
                     {
                         this.soundProvider.PacmanDeathPlay();
                         this.pacmanLife.Count--;
                         this.pacman.IsAlive = false;
                     }
 
-                    if (enemey.MoveSpeed != EnemeyFastSpeed)
+                    if (enemy.MoveSpeed != EnemyFastSpeed)
                     {
-                        enemey.MoveSpeed = EnemeyFastSpeed;
-                        int left = ((enemey.Position.Left - Classic.DistanceFromTheLeft) % Classic.DistanceBetweenGameObjects) % EnemeyFastSpeed;
-                        int top = ((enemey.Position.Top - Classic.DistanceFromTheTop) % Classic.DistanceBetweenGameObjects) % EnemeyFastSpeed;
-                        enemey.Position = new Position(enemey.Position.Left - left, enemey.Position.Top - top);
+                        enemy.MoveSpeed = EnemyFastSpeed;
+                        int left = ((enemy.Position.Left - Classic.DistanceFromTheLeft) % Classic.DistanceBetweenGameObjects) % EnemyFastSpeed;
+                        int top = ((enemy.Position.Top - Classic.DistanceFromTheTop) % Classic.DistanceBetweenGameObjects) % EnemyFastSpeed;
+                        enemy.Position = new Position(enemy.Position.Left - left, enemy.Position.Top - top);
                     }
 
-                    enemey.Award.Value = EnemeyAward;
-                    enemey.MovementType = this.GenerateMovementNearToPacman(enemey);
+                    enemy.Award.Value = EnemyAward;
+                    enemy.MovementType = this.GenerateMovementNearToPacman(enemy);
                 }
 
-                enemey.MakeAMove();
+                enemy.MakeAMove();
             }
         }
 
@@ -198,7 +198,7 @@
                     return;
                 }
 
-                this.fruit.MovementType = this.GenerateEnemeyMovement(this.fruit);
+                this.fruit.MovementType = this.GenerateEnemyMovement(this.fruit);
                 this.fruit.MakeAMove();
             }
             else if (RandomNumberGenerator.Next(10000) < ChanceToSpawnFruit)

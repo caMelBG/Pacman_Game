@@ -17,7 +17,7 @@
             return sqrt < ColisionDistance;
         }
 
-        private bool IsEnemeyEntryToTheCave(IGameObject gameObject)
+        private bool IsEnemyEntryToTheCave(IGameObject gameObject)
         {
             var positio = new Position(this.gate.Position.Left, this.gate.Position.Top + Classic.DistanceBetweenGameObjects);
             double x = Math.Pow(this.gate.Position.Left - gameObject.Position.Left, 2);
@@ -26,7 +26,7 @@
             return sqrt < ColisionDistance;
         }
 
-        private MovementType GenerateEnemeyMovement(IMoveable gameObject)
+        private MovementType GenerateEnemyMovement(IMoveable gameObject)
         {
             var movements = new List<MovementType>();
             if (this.gameMap.CanMove(gameObject, MovementType.Up) && gameObject.MovementType != MovementType.Down)
@@ -108,7 +108,7 @@
             }
             else
             {
-                return this.GenerateEnemeyMovement(gameObject);
+                return this.GenerateEnemyMovement(gameObject);
             }
         }
 
@@ -156,7 +156,7 @@
             }
             else
             {
-                return this.GenerateEnemeyMovement(gameObject);
+                return this.GenerateEnemyMovement(gameObject);
             }
         }
     }

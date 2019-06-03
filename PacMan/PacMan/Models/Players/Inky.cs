@@ -5,7 +5,7 @@
     using Abstract;
     using Common;
 
-    public class Inky : Enemey
+    public class Inky : Enemy
     {
         public Inky(Position position, bool isInCave, Image[] aliveSprites, Image[] invisibleSprites, Image[] killableSprites) 
             : base(position, false, true, isInCave, aliveSprites, invisibleSprites, killableSprites)

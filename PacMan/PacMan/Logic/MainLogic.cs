@@ -18,11 +18,11 @@
         private int NextRoundTimeInterval = 50;
         private const int RegularDotAward = 10;
         private const int HeavyDotAward = 50;
-        private const int EnemeyAward = 200;
+        private const int EnemyAward = 200;
         private const int ChanceToSpawnFruit = 555;
         private const int TimerLength = 18;
-        private const int EnemeySlowSpeed = 2;
-        private const int EnemeyFastSpeed = 3;
+        private const int EnemySlowSpeed = 2;
+        private const int EnemyFastSpeed = 3;
         private const int ColisionDistance = 10;
         private const int DistanceBetweenGameObjects = 50;
         private const int DistanceBetweenEachEatenFruit = 30;
@@ -37,7 +37,7 @@
         private List<Fruit> eatenFruits;
         private HashSet<Position> regularDotPositions;
         private HashSet<Position> heavyDotPositions;
-        private HashSet<Enemey> enemeys;
+        private HashSet<Enemy> enemeis;
         private DispatcherTimer timer;
         private bool isGameStarted;
         private MovementType playerNextMove;
@@ -76,7 +76,7 @@
 
         private void InitPlayers()
         {
-            this.enemeys = new HashSet<Enemey>(this.gameMap.InitEnemeys());
+            this.enemeis = new HashSet<Enemy>(this.gameMap.InitEnemies());
             this.pacman = this.gameMap.InitPacMan();
             this.fruit = null;
         }
@@ -99,9 +99,9 @@
             this.DrawGameObjects();
         }
 
-        private void PlayEnemeySounds()
+        private void PlayEnemeiSounds()
         {
-            if (this.enemeys.Any(x => x.CanKill == true))
+            if (this.enemeis.Any(x => x.CanKill == true))
             {
                 this.soundProvider.ScaredPlay();
                 this.soundProvider.PacmanMovePause();
@@ -112,7 +112,7 @@
                 this.soundProvider.PacmanMovePlay();
             }
 
-            if (this.enemeys.Any(x => x.IsAlive == false))
+            if (this.enemeis.Any(x => x.IsAlive == false))
             {
                 this.soundProvider.RetraitPlay();
             }
@@ -134,10 +134,10 @@
         {
             if (!this.isGameStarted && (BegginingTimeInterval <= 0))
             {
-                foreach (var enemey in this.enemeys)
+                foreach (var enemy in this.enemeis)
                 {
-                    var position = new Position(enemey.Position.Left + 9, enemey.Position.Top);
-                    enemey.Position = position;
+                    var position = new Position(enemy.Position.Left + 9, enemy.Position.Top);
+                    enemy.Position = position;
                 }
 
                 this.isGameStarted = true;

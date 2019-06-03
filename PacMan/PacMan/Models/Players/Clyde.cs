@@ -5,7 +5,7 @@
     using Abstract;
     using Common;
 
-    public class Clyde : Enemey
+    public class Clyde : Enemy
     {
         public Clyde(Position position, bool isInCave, Image[] aliveSprites, Image[] invisibleSprites, Image[] killableSprites) : 
             base(position, false, true, isInCave, aliveSprites, invisibleSprites, killableSprites)

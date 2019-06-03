@@ -1,10 +1,10 @@
-﻿namespace PacMan.Factories.Builders.EnemeyBuilders
+﻿namespace PacMan.Factories.Builders.EnemyBuilders
 {
     using Logic;
     using Models.Common;
     using Models.Players;
 
-    public class PinkyBuilder : EnemeyBuilder
+    public class PinkyBuilder : EnemyBuilder
     {
         public PinkyBuilder(Position position, bool isInCave) : base(GlobalConstants.PinkyImagesPath)
         {

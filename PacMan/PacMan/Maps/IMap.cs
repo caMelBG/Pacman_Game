@@ -14,7 +14,7 @@
 
         Fruit InitFruit();
             
-        IEnumerable<Enemey> InitEnemeys();
+        IEnumerable<Enemy> InitEnemies();
 
         IEnumerable<Position> InitRegularCoins();
 

@@ -1,10 +1,10 @@
-﻿namespace PacMan.Factories.Builders.EnemeyBuilders
+﻿namespace PacMan.Factories.Builders.EnemyBuilders
 {
     using Logic;
     using Models.Common;
     using Models.Players;
 
-    public class ClydeBuilder : EnemeyBuilder
+    public class ClydeBuilder : EnemyBuilder
     {
         public ClydeBuilder(Position position, bool isInCave) : base(GlobalConstants.ClydeImagesPath)
         {

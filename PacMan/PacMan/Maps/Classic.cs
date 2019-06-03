@@ -9,6 +9,8 @@
     using Models.Common;
     using Models.Interfaces;
     using Models.Players;
+    using PacMan.Models.Enums;
+    using PacMan.Factories.Builders;
 
     public class Classic : GameObject, IMap, IImagable
     {
@@ -28,13 +30,14 @@
 
         private int[,] board;
         private Image image;
-        private PlayerFactory playerFactory;
+        private PacmanBuilder pacmanBuilder;
+        private EnemyFactory playerFactory;
         private FruitFactory fruitFactory;
 
         public Classic() : base(new Position(MapWidth / 2, (MapHeight / 2) + (DistanceFromTheTop - DistanceFromTheLeft)), new Size(MapWidth, MapHeight))
         {
             this.InitBoard();
-            this.playerFactory = new PlayerFactory();
+            this.playerFactory = new EnemyFactory();
             this.fruitFactory = new FruitFactory();
             this.image = ImageParser.Parse(GlobalConstants.ClassicMapImagePath);
         }
@@ -122,30 +125,31 @@
         {
             switch (RandomNumberGenerator.Next(6))
             {
-                case 0: return this.fruitFactory.CreatApple(this.fruitStartPosition);
-                case 1: return this.fruitFactory.CreatCherry(this.fruitStartPosition);
-                case 2: return this.fruitFactory.CreatGrapes(this.fruitStartPosition);
-                case 3: return this.fruitFactory.CreatLemon(this.fruitStartPosition);
-                case 4: return this.fruitFactory.CreatOrange(this.fruitStartPosition);
-                case 5: return this.fruitFactory.CreatStrawberry(this.fruitStartPosition);
+                case 0: return this.fruitFactory.CreateFruit(FruitTypes.Apple, this.fruitStartPosition);
+                case 1: return this.fruitFactory.CreateFruit(FruitTypes.Cherry, this.fruitStartPosition);
+                case 2: return this.fruitFactory.CreateFruit(FruitTypes.Grapes, this.fruitStartPosition);
+                case 3: return this.fruitFactory.CreateFruit(FruitTypes.Lemon, this.fruitStartPosition);
+                case 4: return this.fruitFactory.CreateFruit(FruitTypes.Orange, this.fruitStartPosition);
+                case 5: return this.fruitFactory.CreateFruit(FruitTypes.Strawberry, this.fruitStartPosition);
             }
 
-            return this.fruitFactory.CreatApple(this.fruitStartPosition);
+            return this.fruitFactory.CreateFruit(FruitTypes.Apple, this.fruitStartPosition);
         }
 
         public Pacman InitPacMan()
         {
-            return this.playerFactory.CreatPacman(this.pacmanStartPosition);
+            this.pacmanBuilder = new PacmanBuilder(this.pacmanStartPosition);
+            return this.pacmanBuilder.Instance;
         }
 
-        public IEnumerable<Enemey> InitEnemeys()
+        public IEnumerable<Enemy> InitEnemies()
         {
-            var enemeys = new List<Enemey>();
-            enemeys.Add(this.playerFactory.CreatPinky(this.pinkyStartPosition, true));
-            enemeys.Add(this.playerFactory.CreatInky(this.inkyStartPosition, true));
-            enemeys.Add(this.playerFactory.CreatClyde(this.clydeStartPosition, true));
-            enemeys.Add(this.playerFactory.CreatBlinky(this.blinkyStartPosition, false));
-            return enemeys;
+            var enemies = new List<Enemy>();
+            enemies.Add(this.playerFactory.CreateEnemy(EnemyTypes.Blinky, this.pinkyStartPosition, true));
+            enemies.Add(this.playerFactory.CreateEnemy(EnemyTypes.Clyde, this.inkyStartPosition, true));
+            enemies.Add(this.playerFactory.CreateEnemy(EnemyTypes.Inky, this.clydeStartPosition, true));
+            enemies.Add(this.playerFactory.CreateEnemy(EnemyTypes.Pinky, this.blinkyStartPosition, false));
+            return enemies;
         }
 
         public IEnumerable<Position> InitRegularCoins()

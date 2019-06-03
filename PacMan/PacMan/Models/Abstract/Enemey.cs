@@ -7,9 +7,9 @@
     using System;
     using System.Windows.Media;
 
-    public abstract class Enemey : Player, IGameObject, IMoveable, IKillable, IImagable, IAwardable
+    public abstract class Enemy : Player, IGameObject, IMoveable, IKillable, IImagable, IAwardable
     {
-        private const int EnemeyAwardValue = 200;
+        private const int EnemyAwardValue = 200;
         private readonly Color color = Colors.SkyBlue;
         private Image[] aliveSprites;
         private Image[] invisibleSprites;
@@ -19,10 +19,10 @@
         private int killableSpriteIndex = 0;
         private int killableSpriteTimer = 500;
 
-        public Enemey(Position position, bool canKill, bool isAlive, bool isInCave, Image[] aliveSprites, Image[] invisibleSprites, Image[] killableSprites)
+        public Enemy(Position position, bool canKill, bool isAlive, bool isInCave, Image[] aliveSprites, Image[] invisibleSprites, Image[] killableSprites)
             : base(position, isAlive)
         {
-            this.Award = new Award(this.Position, EnemeyAwardValue, color);
+            this.Award = new Award(this.Position, EnemyAwardValue, color);
             this.aliveSprites = aliveSprites;
             this.invisibleSprites = invisibleSprites;
             this.killableSprites = killableSprites;

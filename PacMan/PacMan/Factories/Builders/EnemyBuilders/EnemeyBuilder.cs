@@ -1,23 +1,23 @@
-﻿namespace PacMan.Factories.Builders.EnemeyBuilders
+﻿namespace PacMan.Factories.Builders.EnemyBuilders
 {
     using System.Windows.Controls;
 
     using Logic;
     using Models.Abstract;
 
-    public abstract class EnemeyBuilder
+    public abstract class EnemyBuilder
     {
         private readonly string[] movementImagesNames = { "up.png", "down.png", "left.png", "rigth.png" };
         private readonly string[] killableImagesNames = { "normal.png", "blinked.png" };
 
-        protected EnemeyBuilder(string aliveImagesPath)
+        protected EnemyBuilder(string aliveImagesPath)
         {
             this.AliveImages = this.CreatMovementImagesArray(aliveImagesPath);
             this.CreatInvisibleImagesArray();
             this.CreatKillableImagesArray();
         }
 
-        public Enemey Instance { get; set; }
+        public Enemy Instance { get; set; }
 
         protected Image[] AliveImages { get; private set; }
 
