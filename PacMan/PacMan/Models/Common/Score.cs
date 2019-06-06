@@ -7,12 +7,13 @@
     using Models.Common;
     using Maps;
     using Models.Interfaces;
+    using PacMan.Common;
 
     public class Score : GameObject, IFormatable
     {
         private const string HighScoreText = "SCORE ";
 
-        public Score() : this(new Position(Classic.MapWidth / 2 + 25, 15))
+        public Score() : this(new Position(ClassicMapConstants.MapWidth / 2 + 25, 15))
         {
 
             this.Text = HighScoreText;

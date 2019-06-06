@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-
+    using PacMan.Common;
     using PacMan.Maps;
     using PacMan.Models.Common;
     using PacMan.Models.Interfaces;
@@ -19,9 +19,9 @@
 
         private bool IsEnemyEntryToTheCave(IGameObject gameObject)
         {
-            var positio = new Position(this.gate.Position.Left, this.gate.Position.Top + Classic.DistanceBetweenGameObjects);
+            var positio = new Position(this.gate.Position.Left, this.gate.Position.Top + ClassicMapConstants.DistanceBetweenGameObjects);
             double x = Math.Pow(this.gate.Position.Left - gameObject.Position.Left, 2);
-            double y = Math.Pow(this.gate.Position.Top - gameObject.Position.Top + Classic.DistanceBetweenGameObjects, 2);
+            double y = Math.Pow(this.gate.Position.Top - gameObject.Position.Top + ClassicMapConstants.DistanceBetweenGameObjects, 2);
             double sqrt = Math.Sqrt(x + y);
             return sqrt < ColisionDistance;
         }

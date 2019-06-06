@@ -6,6 +6,8 @@
     using Models.Common;
     using Models.Interfaces;
     using Models.Players;
+    using PacMan.Maps.Strategies;
+
     public interface IMap : IImagable
     {
         Pacman InitPacMan();
@@ -20,10 +22,12 @@
 
         IEnumerable<Position> InitHeavyCoins();
 
+        //MovementType FindPath(IMoveable gameObject, IPathfinderStrategy strategy);
+
         MovementType FindWayOutOfCave(IMoveable gameObject);
 
         MovementType FindWayToCave(IMoveable gameObject);
-        
+
         bool CanMove(IMoveable gameObject, MovementType movementType);
     }
 }

@@ -11,22 +11,23 @@
     using Models.Players;
     using PacMan.Models.Enums;
     using PacMan.Factories.Builders;
+    using PacMan.Common;
+    using PacMan.Maps.Strategies;
 
     public class Classic : GameObject, IMap, IImagable
     {
-        public const int MapWidth = 506;
-        public const int MapHeight = 560;
-        public const int DistanceBetweenGameObjects = 18;
-        public const int DistanceFromTheTop = 60;
-        public const int DistanceFromTheLeft = 10;
-        private const int BoardRows = 31;
-        private const int BoardCols = 14;
-        private readonly Position fruitStartPosition = new Position((DistanceBetweenGameObjects * 13) + (DistanceBetweenGameObjects / 2) + 1 + DistanceFromTheLeft, (DistanceBetweenGameObjects * 17) + DistanceFromTheTop);
-        private readonly Position pacmanStartPosition = new Position((DistanceBetweenGameObjects * 13) + (DistanceBetweenGameObjects / 2) + DistanceFromTheLeft, (DistanceBetweenGameObjects * 23) + DistanceFromTheTop);
-        private readonly Position pinkyStartPosition = new Position((DistanceBetweenGameObjects * 11) + (DistanceBetweenGameObjects / 2) + DistanceFromTheLeft, (DistanceBetweenGameObjects * 14) + DistanceFromTheTop);
-        private readonly Position inkyStartPosition = new Position((DistanceBetweenGameObjects * 13) + (DistanceBetweenGameObjects / 2) + DistanceFromTheLeft, (DistanceBetweenGameObjects * 14) + DistanceFromTheTop);
-        private readonly Position blinkyStartPosition = new Position((DistanceBetweenGameObjects * 13) + (DistanceBetweenGameObjects / 2) + DistanceFromTheLeft, (DistanceBetweenGameObjects * 11) + DistanceFromTheTop);
-        private readonly Position clydeStartPosition = new Position((DistanceBetweenGameObjects * 15) + (DistanceBetweenGameObjects / 2) + DistanceFromTheLeft, (DistanceBetweenGameObjects * 14) + DistanceFromTheTop);
+        private readonly Position fruitStartPosition =
+            new Position((ClassicMapConstants.DistanceBetweenGameObjects * 13) + (ClassicMapConstants.DistanceBetweenGameObjects / 2) + 1 + ClassicMapConstants.DistanceFromTheLeft, (ClassicMapConstants.DistanceBetweenGameObjects * 17) + ClassicMapConstants.DistanceFromTheTop);
+        private readonly Position pacmanStartPosition =
+            new Position((ClassicMapConstants.DistanceBetweenGameObjects * 13) + (ClassicMapConstants.DistanceBetweenGameObjects / 2) + ClassicMapConstants.DistanceFromTheLeft, (ClassicMapConstants.DistanceBetweenGameObjects * 23) + ClassicMapConstants.DistanceFromTheTop);
+        private readonly Position pinkyStartPosition =
+            new Position((ClassicMapConstants.DistanceBetweenGameObjects * 11) + (ClassicMapConstants.DistanceBetweenGameObjects / 2) + ClassicMapConstants.DistanceFromTheLeft, (ClassicMapConstants.DistanceBetweenGameObjects * 14) + ClassicMapConstants.DistanceFromTheTop);
+        private readonly Position inkyStartPosition =
+            new Position((ClassicMapConstants.DistanceBetweenGameObjects * 13) + (ClassicMapConstants.DistanceBetweenGameObjects / 2) + ClassicMapConstants.DistanceFromTheLeft, (ClassicMapConstants.DistanceBetweenGameObjects * 14) + ClassicMapConstants.DistanceFromTheTop);
+        private readonly Position blinkyStartPosition =
+            new Position((ClassicMapConstants.DistanceBetweenGameObjects * 13) + (ClassicMapConstants.DistanceBetweenGameObjects / 2) + ClassicMapConstants.DistanceFromTheLeft, (ClassicMapConstants.DistanceBetweenGameObjects * 11) + ClassicMapConstants.DistanceFromTheTop);
+        private readonly Position clydeStartPosition =
+            new Position((ClassicMapConstants.DistanceBetweenGameObjects * 15) + (ClassicMapConstants.DistanceBetweenGameObjects / 2) + ClassicMapConstants.DistanceFromTheLeft, (ClassicMapConstants.DistanceBetweenGameObjects * 14) + ClassicMapConstants.DistanceFromTheTop);
 
         private int[,] board;
         private Image image;
@@ -34,7 +35,12 @@
         private EnemyFactory playerFactory;
         private FruitFactory fruitFactory;
 
-        public Classic() : base(new Position(MapWidth / 2, (MapHeight / 2) + (DistanceFromTheTop - DistanceFromTheLeft)), new Size(MapWidth, MapHeight))
+        private IPathfinderStrategy pathToCage = new FindPathToCageStrategy();
+        private IPathfinderStrategy pathOutOfCage = new FindPathOutOfCageStrategy();
+
+
+        public Classic() :
+            base(new Position(ClassicMapConstants.MapWidth / 2, (ClassicMapConstants.MapHeight / 2) + (ClassicMapConstants.DistanceFromTheTop - ClassicMapConstants.DistanceFromTheLeft)), new Size(ClassicMapConstants.MapWidth, ClassicMapConstants.MapHeight))
         {
             this.InitBoard();
             this.playerFactory = new EnemyFactory();
@@ -45,19 +51,19 @@
         public bool CanMove(IMoveable gameObject, MovementType movementType)
         {
             var movement = new Movement(movementType);
-            int row = gameObject.Position.Top - DistanceFromTheTop;
-            int col = gameObject.Position.Left - DistanceFromTheLeft;
-            if (row % DistanceBetweenGameObjects == 0 && col % DistanceBetweenGameObjects == 0)
+            int row = gameObject.Position.Top - ClassicMapConstants.DistanceFromTheTop;
+            int col = gameObject.Position.Left - ClassicMapConstants.DistanceFromTheLeft;
+            if (row % ClassicMapConstants.DistanceBetweenGameObjects == 0 && col % ClassicMapConstants.DistanceBetweenGameObjects == 0)
             {
-                row /= DistanceBetweenGameObjects;
-                col /= DistanceBetweenGameObjects;
+                row /= ClassicMapConstants.DistanceBetweenGameObjects;
+                col /= ClassicMapConstants.DistanceBetweenGameObjects;
                 col += movement.Left;
                 row += movement.Top;
 
-                if (col >= BoardCols)
+                if (col >= ClassicMapConstants.BoardCols)
                 {
-                    col = col - BoardCols;
-                    col = BoardCols - col - 1;
+                    col = col - ClassicMapConstants.BoardCols;
+                    col = ClassicMapConstants.BoardCols - col - 1;
                 }
 
                 ///TELEPORT
@@ -65,20 +71,20 @@
                 {
                     if (gameObject is Models.Players.Pacman)
                     {
-                        if (gameObject.Position.Left == DistanceFromTheLeft)
+                        if (gameObject.Position.Left == ClassicMapConstants.DistanceFromTheLeft)
                         {
-                            gameObject.Position = new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 28), gameObject.Position.Top);
+                            gameObject.Position = new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 28), gameObject.Position.Top);
                         }
                         else
                         {
-                            gameObject.Position = new Position(DistanceFromTheLeft, gameObject.Position.Top);
+                            gameObject.Position = new Position(ClassicMapConstants.DistanceFromTheLeft, gameObject.Position.Top);
                         }
 
                         return true;
                     }
                     else
                     {
-                        if (gameObject.Position.Left == DistanceFromTheLeft)
+                        if (gameObject.Position.Left == ClassicMapConstants.DistanceFromTheLeft)
                         {
                             gameObject.MovementType = MovementType.Right;
                         }
@@ -93,14 +99,14 @@
 
                 return this.board[row, col] > 1;
             }
-            else if (row % DistanceBetweenGameObjects == 0)
+            else if (row % ClassicMapConstants.DistanceBetweenGameObjects == 0)
             {
                 if (movementType == MovementType.Left || movementType == MovementType.Right)
                 {
                     return true;
                 }
             }
-            else if (col % DistanceBetweenGameObjects == 0)
+            else if (col % ClassicMapConstants.DistanceBetweenGameObjects == 0)
             {
                 if (movementType == MovementType.Up || movementType == MovementType.Down)
                 {
@@ -118,7 +124,7 @@
 
         public Gate InitGate()
         {
-            return new Gate(new Position((DistanceBetweenGameObjects * 13) + (DistanceBetweenGameObjects / 2) + DistanceFromTheLeft, (DistanceBetweenGameObjects * 12) + (DistanceBetweenGameObjects / 6) + DistanceFromTheTop));
+            return new Gate(new Position((ClassicMapConstants.DistanceBetweenGameObjects * 13) + (ClassicMapConstants.DistanceBetweenGameObjects / 2) + ClassicMapConstants.DistanceFromTheLeft, (ClassicMapConstants.DistanceBetweenGameObjects * 12) + (ClassicMapConstants.DistanceBetweenGameObjects / 6) + ClassicMapConstants.DistanceFromTheTop));
         }
 
         public Fruit InitFruit()
@@ -156,92 +162,92 @@
         {
             var regularCoins = new List<Position>();
             ///12 points
-            for (int index = 0; index < (12 * DistanceBetweenGameObjects); index += DistanceBetweenGameObjects)
+            for (int index = 0; index < (12 * ClassicMapConstants.DistanceBetweenGameObjects); index += ClassicMapConstants.DistanceBetweenGameObjects)
             {
-                regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 2) + index, DistanceFromTheTop + (DistanceBetweenGameObjects * 5)));
-                regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 2) - index, DistanceFromTheTop + (DistanceBetweenGameObjects * 5)));
-                regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 1) + index, DistanceFromTheTop + (DistanceBetweenGameObjects * 1)));
-                regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 1) - index, DistanceFromTheTop + (DistanceBetweenGameObjects * 1)));
-                regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 1) + index, DistanceFromTheTop + (DistanceBetweenGameObjects * 20)));
-                regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 1) - index, DistanceFromTheTop + (DistanceBetweenGameObjects * 20)));
-                regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 2) + index, DistanceFromTheTop + (DistanceBetweenGameObjects * 29)));
-                regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 2) - index, DistanceFromTheTop + (DistanceBetweenGameObjects * 29)));
+                regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 2) + index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 5)));
+                regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 2) - index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 5)));
+                regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 1) + index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 1)));
+                regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 1) - index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 1)));
+                regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 1) + index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 20)));
+                regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 1) - index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 20)));
+                regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 2) + index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 29)));
+                regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 2) - index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 29)));
 
                 ///11 points
-                if (index < (11 * DistanceBetweenGameObjects))
+                if (index < (11 * ClassicMapConstants.DistanceBetweenGameObjects))
                 {
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 6), DistanceFromTheTop + (DistanceBetweenGameObjects * 9) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 6), DistanceFromTheTop + (DistanceBetweenGameObjects * 9) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 6), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 9) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 6), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 9) + index));
                 }
 
                 ///6 points
-                if (index < (6 * DistanceBetweenGameObjects))
+                if (index < (6 * ClassicMapConstants.DistanceBetweenGameObjects))
                 {
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 6), DistanceFromTheTop + (DistanceBetweenGameObjects * 21) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 6), DistanceFromTheTop + (DistanceBetweenGameObjects * 21) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 7) + index, DistanceFromTheTop + (DistanceBetweenGameObjects * 23)));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 7) - index, DistanceFromTheTop + (DistanceBetweenGameObjects * 23)));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 6), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 21) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 6), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 21) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 7) + index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 23)));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 7) - index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 23)));
                 }
 
                 ///5 points
-                if (index < (5 * DistanceBetweenGameObjects))
+                if (index < (5 * ClassicMapConstants.DistanceBetweenGameObjects))
                 {
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 1) + index, DistanceFromTheTop + (DistanceBetweenGameObjects * 26)));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 1) - index, DistanceFromTheTop + (DistanceBetweenGameObjects * 26)));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 1) + index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 26)));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 1) - index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 26)));
                 }
 
                 ///4 points
-                if (index < (4 * DistanceBetweenGameObjects))
+                if (index < (4 * ClassicMapConstants.DistanceBetweenGameObjects))
                 {
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 2) + index, DistanceFromTheTop + (DistanceBetweenGameObjects * 8)));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 2) - index, DistanceFromTheTop + (DistanceBetweenGameObjects * 8)));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 2) + index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 8)));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 2) - index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 8)));
                 }
 
                 ///3 points
-                if (index < (3 * DistanceBetweenGameObjects))
+                if (index < (3 * ClassicMapConstants.DistanceBetweenGameObjects))
                 {
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 6) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 6) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 6), DistanceFromTheTop + (DistanceBetweenGameObjects * 2) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 6), DistanceFromTheTop + (DistanceBetweenGameObjects * 2) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 12), DistanceFromTheTop + (DistanceBetweenGameObjects * 2) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 12), DistanceFromTheTop + (DistanceBetweenGameObjects * 2) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 6), DistanceFromTheTop + (DistanceBetweenGameObjects * 6) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 6), DistanceFromTheTop + (DistanceBetweenGameObjects * 6) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 9), DistanceFromTheTop + (DistanceBetweenGameObjects * 6) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 9), DistanceFromTheTop + (DistanceBetweenGameObjects * 6) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 10) + index, DistanceFromTheTop + (DistanceBetweenGameObjects * 8)));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 10) - index, DistanceFromTheTop + (DistanceBetweenGameObjects * 8)));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 27) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 27) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 9), DistanceFromTheTop + (DistanceBetweenGameObjects * 24) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 9), DistanceFromTheTop + (DistanceBetweenGameObjects * 24) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 12), DistanceFromTheTop + (DistanceBetweenGameObjects * 26) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 12), DistanceFromTheTop + (DistanceBetweenGameObjects * 26) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 6) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 6) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 6), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 2) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 6), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 2) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 12), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 2) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 12), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 2) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 6), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 6) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 6), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 6) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 9), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 6) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 9), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 6) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 10) + index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 8)));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 10) - index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 8)));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 27) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 27) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 9), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 24) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 9), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 24) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 12), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 26) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 12), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 26) + index));
                 }
 
                 ///2 points
-                if (index < (2 * DistanceBetweenGameObjects))
+                if (index < (2 * ClassicMapConstants.DistanceBetweenGameObjects))
                 {
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 4) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 4) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 21) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 21) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 3), DistanceFromTheTop + (DistanceBetweenGameObjects * 24) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 3), DistanceFromTheTop + (DistanceBetweenGameObjects * 24) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 12), DistanceFromTheTop + (DistanceBetweenGameObjects * 21) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 12), DistanceFromTheTop + (DistanceBetweenGameObjects * 21) + index));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 2) + index, DistanceFromTheTop + (DistanceBetweenGameObjects * 23)));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 2) - index, DistanceFromTheTop + (DistanceBetweenGameObjects * 23)));
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 10) + index, DistanceFromTheTop + (DistanceBetweenGameObjects * 26)));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 10) - index, DistanceFromTheTop + (DistanceBetweenGameObjects * 26)));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 4) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 4) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 21) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 21) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 3), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 24) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 3), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 24) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 12), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 21) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 12), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 21) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 2) + index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 23)));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 2) - index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 23)));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 10) + index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 26)));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 10) - index, ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 26)));
                 }
 
                 ///1 point
-                if (index < DistanceBetweenGameObjects)
+                if (index < ClassicMapConstants.DistanceBetweenGameObjects)
                 {
-                    regularCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 2) + index));
-                    regularCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 2) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 2) + index));
+                    regularCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 2) + index));
                 }
             }
 
@@ -251,31 +257,32 @@
         public IEnumerable<Position> InitHeavyCoins()
         {
             var heavyCoins = new List<Position>();
-            heavyCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 3)));
-            heavyCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 3)));
-            heavyCoins.Add(new Position(DistanceFromTheLeft + (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 23)));
-            heavyCoins.Add(new Position(MapWidth - DistanceFromTheLeft - (DistanceBetweenGameObjects * 1), DistanceFromTheTop + (DistanceBetweenGameObjects * 23)));
+            heavyCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 3)));
+            heavyCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 3)));
+            heavyCoins.Add(new Position(ClassicMapConstants.DistanceFromTheLeft + (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 23)));
+            heavyCoins.Add(new Position(ClassicMapConstants.MapWidth - ClassicMapConstants.DistanceFromTheLeft - (ClassicMapConstants.DistanceBetweenGameObjects * 1), ClassicMapConstants.DistanceFromTheTop + (ClassicMapConstants.DistanceBetweenGameObjects * 23)));
             return heavyCoins;
         }
 
         public MovementType FindWayOutOfCave(IMoveable gameObject)
         {
-            if ((gameObject.Position.Top - DistanceFromTheTop) % DistanceBetweenGameObjects == 0 &&
-                (gameObject.Position.Left - DistanceFromTheLeft) % DistanceBetweenGameObjects == 0)
+            return pathOutOfCage.FindPath(gameObject, board);
+            if ((gameObject.Position.Top - ClassicMapConstants.DistanceFromTheTop) % ClassicMapConstants.DistanceBetweenGameObjects == 0 &&
+                (gameObject.Position.Left - ClassicMapConstants.DistanceFromTheLeft) % ClassicMapConstants.DistanceBetweenGameObjects == 0)
             {
-                int row = (gameObject.Position.Top - DistanceFromTheTop) / DistanceBetweenGameObjects;
-                int col = (gameObject.Position.Left - DistanceFromTheLeft) / DistanceBetweenGameObjects;
+                int row = (gameObject.Position.Top - ClassicMapConstants.DistanceFromTheTop) / ClassicMapConstants.DistanceBetweenGameObjects;
+                int col = (gameObject.Position.Left - ClassicMapConstants.DistanceFromTheLeft) / ClassicMapConstants.DistanceBetweenGameObjects;
                 int minValue = int.MinValue;
                 var movementType = MovementType.Up;
                 bool isReflected = false;
-                if (col >= BoardCols)
+                if (col >= ClassicMapConstants.BoardCols)
                 {
                     isReflected = true;
-                    col = col - BoardCols;
-                    col = BoardCols - col - 1;
+                    col = col - ClassicMapConstants.BoardCols;
+                    col = ClassicMapConstants.BoardCols - col - 1;
                 }
 
-                if (col + 1 < BoardCols)
+                if (col + 1 < ClassicMapConstants.BoardCols)
                 {
                     if (this.board[row, col + 1] != 0 && this.board[row, col + 1] > minValue)
                     {
@@ -329,22 +336,23 @@
 
         public MovementType FindWayToCave(IMoveable gameObject)
         {
-            if ((gameObject.Position.Top - DistanceFromTheTop) % DistanceBetweenGameObjects == 0 &&
-                (gameObject.Position.Left - DistanceFromTheLeft) % DistanceBetweenGameObjects == 0)
+            return pathToCage.FindPath(gameObject, board);
+            if ((gameObject.Position.Top - ClassicMapConstants.DistanceFromTheTop) % ClassicMapConstants.DistanceBetweenGameObjects == 0 &&
+                (gameObject.Position.Left - ClassicMapConstants.DistanceFromTheLeft) % ClassicMapConstants.DistanceBetweenGameObjects == 0)
             {
-                int row = (gameObject.Position.Top - DistanceFromTheTop) / DistanceBetweenGameObjects;
-                int col = (gameObject.Position.Left - DistanceFromTheLeft) / DistanceBetweenGameObjects;
+                int row = (gameObject.Position.Top - ClassicMapConstants.DistanceFromTheTop) / ClassicMapConstants.DistanceBetweenGameObjects;
+                int col = (gameObject.Position.Left - ClassicMapConstants.DistanceFromTheLeft) / ClassicMapConstants.DistanceBetweenGameObjects;
                 bool isReflected = false;
-                if (col >= BoardCols)
+                if (col >= ClassicMapConstants.BoardCols)
                 {
                     isReflected = true;
-                    col = col - BoardCols;
-                    col = BoardCols - col - 1;
+                    col = col - ClassicMapConstants.BoardCols;
+                    col = ClassicMapConstants.BoardCols - col - 1;
                 }
 
                 int maxValue = int.MaxValue;
                 var movementType = MovementType.Up;
-                if (col + 1 < BoardCols)
+                if (col + 1 < ClassicMapConstants.BoardCols)
                 {
                     if (this.board[row, col + 1] != 0 && this.board[row, col + 1] < maxValue)
                     {
@@ -401,7 +409,7 @@
 
         private void InitBoard()
         {
-            this.board = new int[BoardRows, BoardCols]
+            this.board = new int[ClassicMapConstants.BoardRows, ClassicMapConstants.BoardCols]
             {
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
             { 0, 24, 23, 22, 21, 20, 19, 20, 21, 22, 21, 20, 19, 0, },

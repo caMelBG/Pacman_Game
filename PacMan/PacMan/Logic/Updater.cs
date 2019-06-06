@@ -1,5 +1,6 @@
 ﻿namespace PacMan.Logic
 {
+    using PacMan.Common;
     using PacMan.Maps;
     using PacMan.Models.Common;
     using System.Threading.Tasks;
@@ -46,9 +47,9 @@
                 this.soundProvider.PacmanChompPlay();
                 this.regularDotPositions.Remove(this.pacman.Position);
             }
-            else if ((this.pacman.Position.Left - Classic.DistanceFromTheLeft) % Classic.DistanceBetweenGameObjects == 0)
+            else if ((this.pacman.Position.Left - ClassicMapConstants.DistanceFromTheLeft) % ClassicMapConstants.DistanceBetweenGameObjects == 0)
             {
-                if ((this.pacman.Position.Top - Classic.DistanceFromTheTop) % Classic.DistanceBetweenGameObjects == 0)
+                if ((this.pacman.Position.Top - ClassicMapConstants.DistanceFromTheTop) % ClassicMapConstants.DistanceBetweenGameObjects == 0)
                 {
                     this.soundProvider.PacmanChompPause();
                 }
@@ -111,8 +112,8 @@
                     if (enemy.MoveSpeed != EnemyFastSpeed)
                     {
                         enemy.MoveSpeed = EnemyFastSpeed;
-                        int left = ((enemy.Position.Left - Classic.DistanceFromTheLeft) % Classic.DistanceBetweenGameObjects) % EnemyFastSpeed;
-                        int top = ((enemy.Position.Top - Classic.DistanceFromTheTop) % Classic.DistanceBetweenGameObjects) % EnemyFastSpeed;
+                        int left = ((enemy.Position.Left - ClassicMapConstants.DistanceFromTheLeft) % ClassicMapConstants.DistanceBetweenGameObjects) % EnemyFastSpeed;
+                        int top = ((enemy.Position.Top - ClassicMapConstants.DistanceFromTheTop) % ClassicMapConstants.DistanceBetweenGameObjects) % EnemyFastSpeed;
                         enemy.Position = new Position(enemy.Position.Left - left, enemy.Position.Top - top);
                     }
 
@@ -145,8 +146,8 @@
                     if (enemy.MoveSpeed != EnemyFastSpeed)
                     {
                         enemy.MoveSpeed = EnemyFastSpeed;
-                        int left = ((enemy.Position.Left - Classic.DistanceFromTheLeft) % Classic.DistanceBetweenGameObjects) % EnemyFastSpeed;
-                        int top = ((enemy.Position.Top - Classic.DistanceFromTheTop) % Classic.DistanceBetweenGameObjects) % EnemyFastSpeed;
+                        int left = ((enemy.Position.Left - ClassicMapConstants.DistanceFromTheLeft) % ClassicMapConstants.DistanceBetweenGameObjects) % EnemyFastSpeed;
+                        int top = ((enemy.Position.Top - ClassicMapConstants.DistanceFromTheTop) % ClassicMapConstants.DistanceBetweenGameObjects) % EnemyFastSpeed;
                         enemy.Position = new Position(enemy.Position.Left - left, enemy.Position.Top - top);
                     }
 

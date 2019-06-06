@@ -2,6 +2,7 @@
 {
     using Maps;
     using Models.Common;
+    using PacMan.Common;
     using PacMan.Models.Dots;
     using PacMan.Models.Enums;
 
@@ -50,7 +51,7 @@
                 for (int index = 0; index < this.eatenFruits.Count; index++)
                 {
                     var currFruit = this.eatenFruits[index];
-                    currFruit.Position = new Position(Classic.MapWidth - (Classic.DistanceBetweenGameObjects + (index * DistanceBetweenEachEatenFruit)), DistanceOfEatenFruitsFromTop);
+                    currFruit.Position = new Position(ClassicMapConstants.MapWidth - (ClassicMapConstants.DistanceBetweenGameObjects + (index * DistanceBetweenEachEatenFruit)), DistanceOfEatenFruitsFromTop);
                     this.gameRenderer.Draw(currFruit.GetImage(), currFruit.Position, currFruit.Size);
                 }
             }
@@ -58,7 +59,7 @@
             ///DRAW LIFES ICONS
             for (int index = 0; index < this.pacmanLife.Count; index++)
             {
-                this.pacmanLife.Position = new Position(Classic.DistanceBetweenGameObjects + (index * DistanceBetweenEachEatenFruit), this.pacmanLife.Position.Top);
+                this.pacmanLife.Position = new Position(ClassicMapConstants.DistanceBetweenGameObjects + (index * DistanceBetweenEachEatenFruit), this.pacmanLife.Position.Top);
                 this.gameRenderer.Draw(this.pacmanLife.GetImage(), this.pacmanLife.Position, this.pacmanLife.Size);
             }
 
